@@ -29,5 +29,4 @@ class Popup:
         print("read_entry_data")
         shortcut = self.shortcut_entry.get()
         description = self.description_entry.get()
-        print(shortcut)
-        print(description)
+        add_shortcut(Shortcut("",shortcut,description,))
