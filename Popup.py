@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import simpledialog
-from system import *
+from databank import *
 
 class Popup:
     def __init__(self, root):
