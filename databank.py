@@ -11,6 +11,11 @@ def add_shortcut(Shortcut):
 def delete_shortcut(Shortcut):
     pass
 
+def clear_data_bank():
+    with open("shortcuts.txt", "w") as f:
+        f.close()
+
 # Call the function to test it
 test_object = Shortcut("1.", "Doesnt Do Anything", "Windows + R")
 add_shortcut(test_object)
+#clear_data_bank()
