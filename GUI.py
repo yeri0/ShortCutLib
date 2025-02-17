@@ -3,38 +3,37 @@ import tkinter as tk
 from tkinter import simpledialog
 from system import *
 import Popup
+import Treeview
+
 
 #Funktion soll ein Dialogfenster öffnen, dass dann mit den nötigen Infos einen neuen Shortcut zur Lib hinzufügt
 def add_button_action():
     print("add_button_action was clicked")
-    popup = Popup.Popup(fenster)
+    popup = Popup.Popup(fenster, tree)
 
 #Funktion soll Dialogfenster öffnen, dass bestimmten Shortcut wieder entfernt
 def delete_button_action():
     print("delete_button_action was pressed")
 
-# Ein Fenster erstellen
+# Create the main window
 fenster = Tk()
-#Geometrie einstellen
 fenster.geometry("750x480")
-# Den Fenstertitel erstellen
 fenster.title("ShortCutLib")
 
-#Darstellung der Shortcuts im Hauptfenster
-listbox = Listbox(fenster, width=50, height=20)
-listbox.grid(row = 1, column = 0, columnspan=2, padx=5, pady=5)
-scrollbar = Scrollbar(fenster)
-scrollbar.grid(row=1, column=2, sticky="ns")
-listbox.config(yscrollcommand=scrollbar.set)
-scrollbar.config(command=listbox.yview)
+tree = Treeview.tree(fenster,show="headings", height=20)
 
-#Add Button erstellen
-add_button = Button(fenster, text="Hinzufügen", command = add_button_action)
-delete_button = Button(fenster, text="Entfernen", command = delete_button_action)
+# Buttons
+add_button = Button(fenster, text="Hinzufügen", command=add_button_action)
+delete_button = Button(fenster, text="Entfernen", command=delete_button_action)
 
-#Button zum Fenster hinzufügen
-add_button.grid(row = 0, column = 0, sticky="e", padx=5, pady=5)
-delete_button.grid(row = 0, column = 1, sticky="e", padx=5, pady=5)
+# Load to window
+add_button.grid(row=0, column=0, sticky="e", padx=5, pady=5)
+delete_button.grid(row=0, column=1, sticky="e", padx=5, pady=5)
+tree.tree.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
 
-#In der Ereignisschleife auf Eingabe des Benutzers warten.
+
+# Load existing shortcuts into the table
+fenster.after(0, tree.refresh_table)
+
+# Start the Tkinter event loop
 fenster.mainloop()
