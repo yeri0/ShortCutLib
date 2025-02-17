@@ -1,40 +1,26 @@
 from Shortcut import Shortcut
-
-shortcutlist = []
-size_shortcutlist = 0
+import sqlite3
 
 def add_shortcut(shortcut: Shortcut):
-    shortcutlist.append(shortcut)
+    with sqlite3.connect("shortcuts.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO shortcuts (name, description, shortcut_string) VALUES (?, ?, ?)", (shortcut.get_name(), shortcut.get_description(), shortcut.get_shortcut()))
+        conn.commit()
+
+def get_shortcuts():
+    with sqlite3.connect("shortcuts.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM shortcuts")
+        return cursor.fetchall()
 
 def delete_shortcut(shortcut):
-    if shortcut in shortcutlist:
-        shortcutlist.remove(shortcut)
-        return 1
-    else:
-        return 0
+    pass
 
 def change_name(shortcut: Shortcut, new_name):
-    try:
-        index = shortcutlist.index(shortcut)
-        chosen = shortcutlist[index]
-        chosen.change_name(new_name)
-
-        return f"{new_name}"
-    except ValueError:
-        return "Not found"
+    pass
 
 def change_description(shortcut: Shortcut, new_description):
-    try:
-        index = shortcutlist.index(shortcut)
-        chosen = shortcutlist[index]
-        chosen.change_name(new_description)
-
-        return f"{new_description}"
-    except ValueError:
-        return "Not found"
+    pass
 
 def search(shortcut: Shortcut):
-    if shortcut in shortcutlist:
-        return shortcut
-    else:
-        return 0
+    pass
