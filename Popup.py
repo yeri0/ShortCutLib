@@ -30,3 +30,8 @@ class Popup:
         shortcut = self.shortcut_entry.get()
         description = self.description_entry.get()
         add_shortcut(Shortcut("",shortcut,description,))
+        for shortcut in shortcutlist:
+            print(shortcut.get_name())
+            print(shortcut.get_shortcut())
+            print(shortcut.get_description())
+        self.shortcut_entry.winfo_toplevel().destroy()

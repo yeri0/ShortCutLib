@@ -8,12 +8,13 @@ import Popup
 def add_button_action():
     print("add_button_action was clicked")
     popup = Popup.Popup(fenster)
-    
-
 
 #Funktion soll Dialogfenster öffnen, dass bestimmten Shortcut wieder entfernt
 def delete_button_action():
     print("delete_button_action was pressed")
+
+#Darstellung der Shortcuts im Hauptfenster
+
 
 # Ein Fenster erstellen
 fenster = Tk()
