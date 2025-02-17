@@ -13,15 +13,20 @@ def add_button_action():
 def delete_button_action():
     print("delete_button_action was pressed")
 
-#Darstellung der Shortcuts im Hauptfenster
-
-
 # Ein Fenster erstellen
 fenster = Tk()
 #Geometrie einstellen
 fenster.geometry("750x480")
 # Den Fenstertitel erstellen
 fenster.title("ShortCutLib")
+
+#Darstellung der Shortcuts im Hauptfenster
+listbox = Listbox(fenster, width=50, height=20)
+listbox.grid(row = 1, column = 0, columnspan=2, padx=5, pady=5)
+scrollbar = Scrollbar(fenster)
+scrollbar.grid(row=1, column=2, sticky="ns")
+listbox.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=listbox.yview)
 
 #Add Button erstellen
 add_button = Button(fenster, text="Hinzufügen", command = add_button_action)
